@@ -5,14 +5,12 @@ import router from "./src/routes";
 import cors from "cors";
 import path from "path";
 
-
 dotenv.config();
 const port = process.env.PORT || 3000;
 
 const corsConfig: object = {
   origin: "http://localhost:5173",
 };
-
 
 const app = express();
 app.use(express.json());
@@ -25,5 +23,5 @@ app.use("/api/v1", router);
 
 app.listen(port, async () => {
   await db.$connect();
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at ${port}`);
 });
