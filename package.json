@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "prisma:generate": "prisma generate",
+    "postinstall": "prisma generate",
     "deploy": "prisma migrate deploy && prisma generate",
     "migrate": "npx prisma migrate deploy && prisma generate"
   },
