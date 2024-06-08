@@ -37,8 +37,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
-const db_1 = __importDefault(require("./src/db"));
-const routes_1 = __importDefault(require("./src/routes"));
+const db_1 = __importDefault(require("../src/db"));
+const routes_1 = __importDefault(require("./routes"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 dotenv.config();
@@ -55,5 +55,5 @@ app.use((0, cors_1.default)(corsConfig));
 app.use("/api/v1", routes_1.default);
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     yield db_1.default.$connect();
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Example app listening at ${port}`);
 }));
