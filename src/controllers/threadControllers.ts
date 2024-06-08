@@ -44,7 +44,7 @@ export default new (class ThreadControllers {
 
   async findReplies(req: Request, res: Response) {
     try {
-      const { id } = req.params;
+      const id = req.body;
       const replies = await threadServices.findReplies(+id);
 
       return res.status(200).json({ message: "success", data: replies });
@@ -55,8 +55,9 @@ export default new (class ThreadControllers {
 
   async delete(req: Request, res: Response) {
     try {
-      const  id  = req.params;
-      await threadServices.delete(+id);
+      const userId = req.body.userId;
+      const id = req.body.id;
+      await threadServices.delete(+id, userId);
       return res.status(200).json({ message: "success" });
     } catch (error: any) {
       return res.status(500).json({ error: error.message });

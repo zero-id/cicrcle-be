@@ -161,8 +161,8 @@ export default new (class threadServices {
     return thread;
   }
 
-  async delete(id: number) {
-    const thread = await db.thread.findFirst({ where: { id } });
+  async delete(id: number, userId: number) {
+    const thread = await db.thread.findFirst({ where: { id, userId: userId } });
     if (!thread) {
       throw new Error("Thread not found");
     }
