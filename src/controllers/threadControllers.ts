@@ -57,8 +57,8 @@ export default new (class ThreadControllers {
     try {
       const userId = req.body.userId;
       const id = req.body.id;
-      await threadServices.delete(+id, userId);
-      return res.status(200).json({ message: "success" });
+      const thread = await threadServices.delete(+id, userId);
+      return res.status(200).json({ message: "success", data: thread });
     } catch (error: any) {
       return res.status(500).json({ error: error.message });
     }

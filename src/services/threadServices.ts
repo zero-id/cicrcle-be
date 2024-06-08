@@ -171,9 +171,9 @@ export default new (class threadServices {
       throw new Error("You are not authorized to delete this thread");
     }
 
-    await db.thread.delete({ where: { id } });
+    return await db.thread.delete({ where: { id } });
 
-    await db.threadImage.deleteMany({ where: { threadId: id } });
+    // await db.threadImage.deleteMany({ where: { threadId: id } });
   }
 
   async findReplies(threadId: number) {
