@@ -45,6 +45,8 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 const corsConfig = {
     origin: "https://circle-app-amber.vercel.app/",
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
 };
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
