@@ -55,8 +55,8 @@ export default new (class ThreadControllers {
 
   async delete(req: Request, res: Response) {
     try {
-      const userId = req.body.userId;
-      const id = req.body.id;
+      const userId = res.locals.user;
+      const id = req.params.id;
       const thread = await threadServices.delete(+id, userId);
       return res.status(200).json({ message: "success", data: thread });
     } catch (error: any) {

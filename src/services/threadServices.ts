@@ -162,18 +162,20 @@ export default new (class threadServices {
   }
 
   async delete(id: number, userId: number) {
-    const thread = await db.thread.findFirst({ where: { id, userId: userId } });
+    const thread = await db.thread.findFirst({
+      where: { id, userId },
+    });
     if (!thread) {
       throw new Error("Thread not found");
     }
 
-    if (thread.userId !== id) {
+    if (thread.userId !== userId) {
       throw new Error("You are not authorized to delete this thread");
     }
 
-    return await db.thread.delete({ where: { id } });
+    await db.thread.delete({ where: { id } });
 
-    // await db.threadImage.deleteMany({ where: { threadId: id } });
+    await db.threadImage.deleteMany({ where: { threadId: id } });
   }
 
   async findReplies(threadId: number) {
