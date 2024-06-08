@@ -10,7 +10,7 @@ export default new (class threadServices {
         id: "desc",
       },
       include: {
-        image: {
+        images: {
           select: {
             image: true,
           },
@@ -26,7 +26,7 @@ export default new (class threadServices {
         _count: {
           select: {
             replies: true,
-            like: true,
+            likes: true,
           },
         },
         replies: {
@@ -39,20 +39,20 @@ export default new (class threadServices {
                 profile: true,
               },
             },
-            image: {
+            images: {
               select: {
                 image: true,
               },
             },
             _count: {
               select: {
-                like: true,
+                likes: true,
                 replies: true,
               },
             },
           },
         },
-        like: true,
+        likes: true,
       },
     });
   }
@@ -66,7 +66,7 @@ export default new (class threadServices {
         id: "desc",
       },
       include: {
-        image: {
+        images: {
           select: {
             image: true,
           },
@@ -82,7 +82,7 @@ export default new (class threadServices {
         _count: {
           select: {
             replies: true,
-            like: true,
+            likes: true,
           },
         },
         replies: {
@@ -98,20 +98,20 @@ export default new (class threadServices {
                 profile: true,
               },
             },
-            image: {
+            images: {
               select: {
                 image: true,
               },
             },
             _count: {
               select: {
-                like: true,
+                likes: true,
               },
             },
-            like: true,
+            likes: true,
           },
         },
-        like: true,
+        likes: true,
       },
     });
   }
@@ -135,7 +135,7 @@ export default new (class threadServices {
     const thread = await db.thread.create({
       data: {
         ...payload,
-        threadId: payload.threadId ? Number(payload.threadId) : null,
+        parentId: payload.threadId ? Number(payload.threadId) : null,
       },
     });
 
@@ -181,10 +181,10 @@ export default new (class threadServices {
   async findReplies(threadId: number) {
     return await db.thread.findMany({
       where: {
-        threadId,
+        parentId: threadId,
       },
       include: {
-        image: {
+        images: {
           select: {
             image: true,
           },

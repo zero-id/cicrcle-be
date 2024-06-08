@@ -14,7 +14,7 @@ export default new (class userServices {
         },
         follower: true,
         following: true,
-        thread: {
+        threads: {
           include: {
             author: {
               select: {
@@ -24,14 +24,14 @@ export default new (class userServices {
                 profile: true,
               },
             },
-            image: {
+            images: {
               select: {
                 image: true,
               },
             },
             _count: {
               select: {
-                like: true,
+                likes: true,
                 replies: true,
               },
             },
@@ -56,8 +56,8 @@ export default new (class userServices {
         },
         follower: true,
         following: true,
-        like: true,
-        thread: true,
+        likes: true,
+        threads: true,
       },
     });
   }
