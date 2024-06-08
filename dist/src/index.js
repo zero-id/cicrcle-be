@@ -43,15 +43,20 @@ const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 dotenv.config();
 const port = process.env.PORT || 3000;
-const corsConfig = {
-    origin: "https://circle-app-amber.vercel.app",
-};
+// const corsConfig: object = {
+//   origin: "https://circle-app-amber.vercel.app",
+// };
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 // app.use(express.static("./src/uploads"));
 app.use("/uploads", express_1.default.static(path_1.default.join(__dirname, "src/uploads")));
-app.use((0, cors_1.default)(corsConfig));
+// app.use(cors(corsConfig));
+app.use((0, cors_1.default)({
+    origin: "https://circle-app-amber.vercel.app", // Domain Vercel Anda tanpa trailing slash
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+}));
 app.use("/api/v1", routes_1.default);
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
     yield db_1.default.$connect();
