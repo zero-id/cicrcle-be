@@ -10,7 +10,7 @@ export default new (class threadServices {
         id: "desc",
       },
       include: {
-        images: {
+        image: {
           select: {
             image: true,
           },
@@ -26,7 +26,7 @@ export default new (class threadServices {
         _count: {
           select: {
             replies: true,
-            likes: true,
+            like: true,
           },
         },
         replies: {
@@ -39,20 +39,20 @@ export default new (class threadServices {
                 profile: true,
               },
             },
-            images: {
+            image: {
               select: {
                 image: true,
               },
             },
             _count: {
               select: {
-                likes: true,
+                like: true,
                 replies: true,
               },
             },
           },
         },
-        likes: true,
+        like: true,
       },
     });
   }
@@ -66,7 +66,7 @@ export default new (class threadServices {
         id: "desc",
       },
       include: {
-        images: {
+        image: {
           select: {
             image: true,
           },
@@ -82,7 +82,7 @@ export default new (class threadServices {
         _count: {
           select: {
             replies: true,
-            likes: true,
+            like: true,
           },
         },
         replies: {
@@ -98,20 +98,20 @@ export default new (class threadServices {
                 profile: true,
               },
             },
-            images: {
+            image: {
               select: {
                 image: true,
               },
             },
             _count: {
               select: {
-                likes: true,
+                like: true,
               },
             },
-            likes: true,
+            like: true,
           },
         },
-        likes: true,
+        like: true,
       },
     });
   }
@@ -135,7 +135,7 @@ export default new (class threadServices {
     const thread = await db.thread.create({
       data: {
         ...payload,
-        parentId: payload.threadId ? Number(payload.threadId) : null,
+        threadId: payload.threadId ? Number(payload.threadId) : null,
       },
     });
 
@@ -169,6 +169,7 @@ export default new (class threadServices {
       throw new Error("Thread not found");
     }
 
+
     if (thread.userId !== userId) {
       throw new Error("You are not authorized to delete this thread");
     }
@@ -181,10 +182,10 @@ export default new (class threadServices {
   async findReplies(threadId: number) {
     return await db.thread.findMany({
       where: {
-        parentId: threadId,
+        threadId,
       },
       include: {
-        images: {
+        image: {
           select: {
             image: true,
           },

@@ -36,7 +36,6 @@ export default new (class ThreadControllers {
 
       return res.status(201).json({ message: "success", data: thread });
     } catch (error: any) {
-      console.log(error);
 
       return res.status(500).json({ error: error.message });
     }
@@ -57,7 +56,9 @@ export default new (class ThreadControllers {
     try {
       const userId = res.locals.user;
       const id = req.params.id;
-      const thread = await threadServices.delete(+id, userId);
+
+      
+      const thread = await threadServices.delete(+id, +userId);
       return res.status(200).json({ message: "success", data: thread });
     } catch (error: any) {
       return res.status(500).json({ error: error.message });
