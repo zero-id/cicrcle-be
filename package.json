@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node dist/src/index.js",
     "postinstall": "prisma generate",
     "deploy": "prisma migrate deploy && prisma generate",
     "migrate": "npx prisma migrate deploy && prisma generate"
