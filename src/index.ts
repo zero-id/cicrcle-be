@@ -9,7 +9,7 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 const corsConfig: object = {
-  origin: "http://localhost:5173",
+  origin: "https://circle-app-amber.vercel.app",
 };
 
 const app = express();
