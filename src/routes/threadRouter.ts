@@ -16,7 +16,7 @@ threadRoute.post(
 
 threadRoute.get("/threads", threadControllers.findAll);
 threadRoute.get("/threads/replies/:id", threadControllers.findReplies);
-threadRoute.delete("/threads/:id", threadControllers.delete);
+threadRoute.delete("/threads", threadControllers.delete);
 threadRoute.get("/threads/:id", threadControllers.findById);
 
 export default threadRoute;
