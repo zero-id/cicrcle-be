@@ -9,7 +9,7 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 const corsConfig: object = {
-  origin: "https://circle-app-amber.vercel.app",
+  origin: "https://circle-app-amber.vercel.app/",
 };
 
 const app = express();
