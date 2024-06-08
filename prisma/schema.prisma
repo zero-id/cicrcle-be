@@ -36,8 +36,8 @@ model User {
 model Follow {
   followerId  Int
   followingId Int
-  follower    User     @relation("follower", fields: [followerId], references: [id])
-  following   User     @relation("following", fields: [followingId], references: [id])
+  follower    User     @relation("follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following   User     @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -47,7 +47,7 @@ model Follow {
 model Profile {
   id        Int      @id @default(autoincrement())
   userId    Int      @unique
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   avatar    String?
   cover     String?
   bio       String?
@@ -59,10 +59,10 @@ model thread {
   id        Int           @id @default(autoincrement())
   content   String?
   userId    Int
-  author    User          @relation(fields: [userId], references: [id])
+  author    User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   like      Like[]        @relation("thread")
   threadId  Int?
-  parent    thread?       @relation("threadReplies", fields: [threadId], references: [id])
+  parent    thread?       @relation("threadReplies", fields: [threadId], references: [id], onDelete: Cascade)
   replies   thread[]      @relation("threadReplies")
   image     ThreadImage[]
   createdAt DateTime      @default(now())
@@ -84,7 +84,7 @@ model ThreadImage {
   id        Int      @id @default(autoincrement())
   image     String?
   threadId  Int
-  thread    thread   @relation(fields: [threadId], references: [id])
+  thread    thread   @relation(fields: [threadId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
