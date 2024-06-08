@@ -44,7 +44,7 @@ const path_1 = __importDefault(require("path"));
 dotenv.config();
 const port = process.env.PORT || 3000;
 const corsConfig = {
-    origin: "http://localhost:5173",
+    origin: "https://circle-app-amber.vercel.app/",
 };
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
